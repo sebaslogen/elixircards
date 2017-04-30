@@ -29,6 +29,14 @@ defmodule Elixircards do
     Enum.shuffle(deck)
   end
 
+  @doc """
+    Determines whether a given `deck` contains a given `card`
+
+    ## Examples
+
+      iex> Elixircards.create_deck |> Elixircards.contains?("Two of Spades")
+      true
+  """
   def contains?(deck, card) do
     Enum.member? deck, card
   end
