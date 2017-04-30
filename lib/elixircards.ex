@@ -43,4 +43,10 @@ defmodule Elixircards do
       {:error, _} -> "That file does not exist"
     end
   end
+
+  def create_hand(hand_size) do
+    Elixircards.create_deck
+    |> Elixircards.shuffle
+    |> Elixircards.deal(hand_size)
+  end
 end
