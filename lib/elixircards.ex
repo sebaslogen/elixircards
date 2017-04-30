@@ -30,7 +30,7 @@ defmodule Elixircards do
   end
 
   @doc """
-    Determines whether a given `deck` contains a given `card`
+    Determines whether a given `deck` contains a given `card`.
 
     ## Examples
 
@@ -72,6 +72,18 @@ defmodule Elixircards do
     end
   end
 
+  @doc """
+    Returns a hand of random cards of given `hand_size` and the rest of the cards
+    in the deck as a tuple
+
+    ## Examples
+
+      iex> {hand, remaining_deck} = Elixircards.create_hand(5)
+      iex> length(hand)
+      5
+      iex> length(remaining_deck)
+      15
+  """
   def create_hand(hand_size) do
     Elixircards.create_deck
     |> Elixircards.shuffle
