@@ -4,18 +4,20 @@ defmodule Elixircards do
   """
 
   @doc """
-  Hello world.
+  Create deck.
 
   ## Examples
 
-      iex> Elixircards.hello
-      :world
-
+      iex> Elixircards.create_deck
+        ["Ace of Spades", "Two of Spades", "Three...
   """
   def create_deck do
     values = ["Ace", "Two", "Three", "Four", "Five"]
     suits = ["Spades", "Hearts", "Clubs", "Diamonds"]
     Enum.flat_map(suits, fn(suit) -> Enum.map(values, &("#{&1} of #{suit}")) end)
+#    Enum.flat_map(suits,
+#                        fn(suit) -> Enum.map(values,
+#                                                    fn(value) -> "#{value} of #{suit}" end) end)
   end
 
   def shuffle(deck) do
@@ -28,5 +30,18 @@ defmodule Elixircards do
 
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
+  end
+
+  def save(deck, filename) do
+    binary = :erlang.term_to_binary(deck)
+    File.write(filename, binary)
+  end
+
+  def load(filename) do
+    {status, data} = File.read(filename)
+    case status do
+      :ok -> :erlang.binary_to_term(data)
+      :error -> "That file does not exist"
+    end
   end
 end
