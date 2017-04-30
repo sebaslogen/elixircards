@@ -1,12 +1,12 @@
 defmodule Elixircards do
   @moduledoc """
-  Documentation for Elixircards.
+    Provides methods for creating and handling a deck of cards
   """
 
   @doc """
-  Create deck.
+    Returns a list of strings represing a deck of playing cards
 
-  ## Examples
+    ## Examples
 
       iex> Elixircards.create_deck
         ["Ace of Spades", "Two of Spades", "Three...
@@ -15,6 +15,7 @@ defmodule Elixircards do
     values = ["Ace", "Two", "Three", "Four", "Five"]
     suits = ["Spades", "Hearts", "Clubs", "Diamonds"]
     Enum.flat_map(suits, fn(suit) -> Enum.map(values, &("#{&1} of #{suit}")) end)
+#    Alternative implementation of last line
 #    Enum.flat_map(suits,
 #                        fn(suit) -> Enum.map(values,
 #                                                    fn(value) -> "#{value} of #{suit}" end) end)
@@ -28,6 +29,16 @@ defmodule Elixircards do
     Enum.member? deck, card
   end
 
+  @doc """
+    Divides a deck into a hand and the remaining of the deck.
+    The `hand_size` argument indicates how many cards should
+    be in the hand.
+
+    ## Examples
+
+      iex> Elixircards.create_deck |> Elixircards.deal(2)
+        { ["Ace of Spades", "Two of Spades"], ["Three...] }
+  """
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
   end
