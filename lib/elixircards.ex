@@ -38,10 +38,9 @@ defmodule Elixircards do
   end
 
   def load(filename) do
-    {status, data} = File.read(filename)
-    case status do
-      :ok -> :erlang.binary_to_term(data)
-      :error -> "That file does not exist"
+    case File.read(filename) do
+      {:ok, binary_data} -> :erlang.binary_to_term(binary_data)
+      {:error, _} -> "That file does not exist"
     end
   end
 end
