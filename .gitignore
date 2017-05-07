@@ -21,3 +21,5 @@ erl_crash.dump
 
 .idea/*
 *.iml
+.idea/workspace.xml
+.idea/sonarlint/issuestore/index.pb
